@@ -14,7 +14,7 @@ on: workflow_call
 jobs:
   test_set_2:
     runs-on: ubuntu-22.04
-    if: github.repository_owner == 'hwdsl2'
+    if: github.repository_owner == 'sbcarp'
     strategy:
       matrix:
         os_version: ["ubuntu:24.04", "ubuntu:22.04", "ubuntu:20.04", "debian:12", "debian:11", "alpine:3.20", "alpine:3.19"]
@@ -75,7 +75,7 @@ jobs:
           mkdir -p /opt/src
           cd /opt/src
           ls -ld "$GITHUB_WORKSPACE/vpnsetup.sh"
-          echo "# hwdsl2" > run.sh
+          echo "# sbcarp" > run.sh
 
           if [ "$os_type" = "alpine" ]; then
             apk add -U wget rsyslog sed bash

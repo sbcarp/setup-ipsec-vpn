@@ -2,7 +2,7 @@
 
 # Configure IPsec/L2TP VPN Clients
 
-After [setting up your own VPN server](https://github.com/hwdsl2/setup-ipsec-vpn), follow these steps to configure your devices. IPsec/L2TP is natively supported by Android, iOS, OS X, and Windows. There is no additional software to install. Setup should only take a few minutes. In case you are unable to connect, first check to make sure the VPN credentials were entered correctly.
+After [setting up your own VPN server](https://github.com/sbcarp/setup-ipsec-vpn), follow these steps to configure your devices. IPsec/L2TP is natively supported by Android, iOS, OS X, and Windows. There is no additional software to install. Setup should only take a few minutes. In case you are unable to connect, first check to make sure the VPN credentials were entered correctly.
 
 ---
 * Platforms
@@ -165,7 +165,7 @@ If you get an error when trying to connect, see [Troubleshooting](#ikev1-trouble
 
 If you still want to connect using IPsec/L2TP mode, you must first edit `/etc/ipsec.conf` on the VPN server. Find the line `ike=...` and append `,aes256-sha2;modp1024,aes128-sha1;modp1024` at the end. Save the file and run `service ipsec restart`.
 
-Docker users: Add `VPN_ENABLE_MODP1024=yes` to [your env file](https://github.com/hwdsl2/docker-ipsec-vpn-server#how-to-use-this-image), then re-create the Docker container.
+Docker users: Add `VPN_ENABLE_MODP1024=yes` to [your env file](https://github.com/sbcarp/docker-ipsec-vpn-server#how-to-use-this-image), then re-create the Docker container.
 
 After that, follow the steps below on your Android device:
 
@@ -523,13 +523,13 @@ ipsec trafficstatus
 
 To fix this error, a one-time registry change is required because the VPN server and/or client is behind NAT (e.g. home router). Download and import the `.reg` file below, or run the following from an [elevated command prompt](http://www.winhelponline.com/blog/open-elevated-command-prompt-windows/). **You must reboot your PC when finished.**
 
-- For Windows Vista, 7, 8, 10 and 11 ([download .reg file](https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Windows_Vista_7_8_10_Reboot_Required.reg))
+- For Windows Vista, 7, 8, 10 and 11 ([download .reg file](https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Windows_Vista_7_8_10_Reboot_Required.reg))
 
   ```console
   REG ADD HKLM\SYSTEM\CurrentControlSet\Services\PolicyAgent /v AssumeUDPEncapsulationContextOnSendRule /t REG_DWORD /d 0x2 /f
   ```
 
-- For Windows XP ONLY ([download .reg file](https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Windows_XP_ONLY_Reboot_Required.reg))
+- For Windows XP ONLY ([download .reg file](https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Windows_XP_ONLY_Reboot_Required.reg))
 
   ```console
   REG ADD HKLM\SYSTEM\CurrentControlSet\Services\IPSec /v AssumeUDPEncapsulationContextOnSendRule /t REG_DWORD /d 0x2 /f
@@ -537,7 +537,7 @@ To fix this error, a one-time registry change is required because the VPN server
 
 Although uncommon, some Windows systems disable IPsec encryption, causing the connection to fail. To re-enable it, run the following command and reboot your PC.
 
-- For Windows XP, Vista, 7, 8, 10 and 11 ([download .reg file](https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Allow_IPsec_Reboot_Required.reg))
+- For Windows XP, Vista, 7, 8, 10 and 11 ([download .reg file](https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Allow_IPsec_Reboot_Required.reg))
 
   ```console
   REG ADD HKLM\SYSTEM\CurrentControlSet\Services\RasMan\Parameters /v ProhibitIpSec /t REG_DWORD /d 0x0 /f
@@ -587,7 +587,7 @@ After upgrading Windows 10/11 version (e.g. from 21H2 to 22H2), you may need to 
 
 Windows 8, 10 and 11 use "smart multi-homed name resolution" by default, which may cause "DNS leaks" when using the native IPsec VPN client if your DNS servers on the Internet adapter are from the local network segment. To fix, you may either [disable smart multi-homed name resolution](https://www.neowin.net/news/guide-prevent-dns-leakage-while-using-a-vpn-on-windows-10-and-windows-8/), or configure your Internet adapter to use DNS servers outside your local network (e.g. 8.8.8.8 and 8.8.4.4). When finished, reboot your PC.
 
-In addition, if your computer has IPv6 enabled, all IPv6 traffic (including DNS queries) will bypass the VPN. Learn how to [disable IPv6](https://support.microsoft.com/en-us/help/929852/guidance-for-configuring-ipv6-in-windows-for-advanced-users) in Windows. If you need a VPN with IPv6 support, you could instead try [OpenVPN](https://github.com/hwdsl2/openvpn-install) or [WireGuard](https://github.com/hwdsl2/wireguard-install).
+In addition, if your computer has IPv6 enabled, all IPv6 traffic (including DNS queries) will bypass the VPN. Learn how to [disable IPv6](https://support.microsoft.com/en-us/help/929852/guidance-for-configuring-ipv6-in-windows-for-advanced-users) in Windows. If you need a VPN with IPv6 support, you could instead try [OpenVPN](https://github.com/sbcarp/openvpn-install) or [WireGuard](https://github.com/sbcarp/wireguard-install).
 
 ### Android/Linux MTU/MSS issues
 
@@ -604,7 +604,7 @@ iptables -t mangle -A FORWARD -m policy --pol ipsec --dir out \
 echo 1 > /proc/sys/net/ipv4/ip_no_pmtu_disc
 ```
 
-**Docker users:** Instead of running the commands above, you may apply this fix by adding `VPN_ANDROID_MTU_FIX=yes` to [your env file](https://github.com/hwdsl2/docker-ipsec-vpn-server#how-to-use-this-image), then re-create the Docker container.
+**Docker users:** Instead of running the commands above, you may apply this fix by adding `VPN_ANDROID_MTU_FIX=yes` to [your env file](https://github.com/sbcarp/docker-ipsec-vpn-server#how-to-use-this-image), then re-create the Docker container.
 
 Reference: [[1]](https://www.zeitgeist.se/2013/11/26/mtu-woes-in-ipsec-tunnels-how-to-fix/).
 
@@ -628,7 +628,7 @@ After trying the steps above, if your computer is still not sending traffic over
 
 To save battery, iOS devices (iPhone/iPad) will automatically disconnect Wi-Fi shortly after the screen turns off (sleep mode). As a result, the IPsec VPN disconnects. This behavior is [by design](https://discussions.apple.com/thread/2333948) and cannot be configured.
 
-If you need the VPN to auto-reconnect when the device wakes up, you may connect using [IKEv2](ikev2-howto.md) mode (recommended) and enable the "VPN On Demand" feature. Alternatively, you may try [OpenVPN](https://github.com/hwdsl2/openvpn-install) instead, which [has support for options](https://openvpn.net/vpn-server-resources/faq-regarding-openvpn-connect-ios/) such as "Reconnect on Wakeup" and "Seamless Tunnel".
+If you need the VPN to auto-reconnect when the device wakes up, you may connect using [IKEv2](ikev2-howto.md) mode (recommended) and enable the "VPN On Demand" feature. Alternatively, you may try [OpenVPN](https://github.com/sbcarp/openvpn-install) instead, which [has support for options](https://openvpn.net/vpn-server-resources/faq-regarding-openvpn-connect-ios/) such as "Reconnect on Wakeup" and "Seamless Tunnel".
 
 <a name="debian-10-kernel"></a>
 Android devices may also disconnect Wi-Fi after entering sleep mode. You may try enabling the "Always-on VPN" option to stay connected. Learn more [here](https://support.google.com/android/answer/9089766).
@@ -643,7 +643,7 @@ To fix the issue with IPsec/L2TP mode, you may switch to the standard Linux kern
 
 Note: This license applies to this document only.
 
-Copyright (C) 2016-2024 [Lin Song](https://github.com/hwdsl2) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
+Copyright (C) 2016-2024 [Lin Song](https://github.com/sbcarp) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
 Inspired by [the work of Joshua Lund](https://github.com/StreisandEffect/streisand/blob/6aa6b6b2735dd829ca8c417d72eb2768a89b6639/playbooks/roles/l2tp-ipsec/templates/instructions.md.j2)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.

@@ -16,7 +16,7 @@ Customizable with the following options:
 
 Press this button to start:
 
-[![Deploy to Azure](../docs/images/azure-deploy-button.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhwdsl2%2Fsetup-ipsec-vpn%2Fmaster%2Fazure%2Fazuredeploy.json)
+[![Deploy to Azure](../docs/images/azure-deploy-button.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsbcarp%2Fsetup-ipsec-vpn%2Fmaster%2Fazure%2Fazuredeploy.json)
 
 When the deployment finishes, Azure displays a notification. Next steps: [Configure VPN Clients](../README.md#next-steps).
 
@@ -25,7 +25,7 @@ When the deployment finishes, Azure displays a notification. Next steps: [Config
 ## Authors
 
 Copyright (C) 2016 [Daniel Falkner](https://github.com/derdanu)   
-Copyright (C) 2017-2024 [Lin Song](https://github.com/hwdsl2)
+Copyright (C) 2017-2024 [Lin Song](https://github.com/sbcarp)
 
 ## Screenshot
 

@@ -33,9 +33,9 @@
 
 高级用户可以在运行 VPN 安装脚本时定义 `VPN_DNS_SRV1` 和 `VPN_DNS_SRV2`（可选）。有关更多详细信息，请参见[自定义 VPN 选项](../README-zh.md#自定义-vpn-选项)。
 
-你可以为特定的 IKEv2 客户端设置不同的 DNS 服务器。对于此用例，请参见 [#1562](https://github.com/hwdsl2/setup-ipsec-vpn/issues/1562#issuecomment-2151361658)。
+你可以为特定的 IKEv2 客户端设置不同的 DNS 服务器。对于此用例，请参见 [#1562](https://github.com/sbcarp/setup-ipsec-vpn/issues/1562#issuecomment-2151361658)。
 
-如果你的用例需要使用 IPTables 规则将 DNS 流量重定向到另一台服务器，请参见 [#1565](https://github.com/hwdsl2/setup-ipsec-vpn/issues/1565)。
+如果你的用例需要使用 IPTables 规则将 DNS 流量重定向到另一台服务器，请参见 [#1565](https://github.com/sbcarp/setup-ipsec-vpn/issues/1565)。
 
 在某些情况下，你可能希望 VPN 客户端仅使用指定的 DNS 服务器来解析内部域名，并使用其本地配置的 DNS 服务器来解析所有其他域名。这可以使用 `modecfgdomains` 选项进行配置，例如 `modecfgdomains="internal.example.com, home"`。对于 IKEv2，将此选项添加到 `/etc/ipsec.d/ikev2.conf` 中的 `conn ikev2-cp` 小节。对于 IPsec/XAuth ("Cisco IPsec")，将此选项添加到 `/etc/ipsec.conf` 中的 `conn xauth-psk` 小节。然后运行 `service ipsec restart`。IPsec/L2TP 模式不支持此选项。
 
@@ -412,7 +412,7 @@ VPN 服务器搭建完成后，可以通过部署 Google BBR 拥塞控制算法�
 
 ## 授权协议
 
-版权所有 (C) 2021-2024 [Lin Song](https://github.com/hwdsl2) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
+版权所有 (C) 2021-2024 [Lin Song](https://github.com/sbcarp) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)   
 这个项目是以 [知识共享署名-相同方式共享3.0](http://creativecommons.org/licenses/by-sa/3.0/) 许可协议授权。   

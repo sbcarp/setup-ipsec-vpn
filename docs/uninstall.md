@@ -29,8 +29,8 @@ curl -fsSL https://get.vpnsetup.net/unst -o unst.sh && sudo bash unst.sh
 Alternative script URLs:
 
 ```bash
-https://github.com/hwdsl2/setup-ipsec-vpn/raw/master/extras/vpnuninstall.sh
-https://gitlab.com/hwdsl2/setup-ipsec-vpn/-/raw/master/extras/vpnuninstall.sh
+https://github.com/sbcarp/setup-ipsec-vpn/raw/master/extras/vpnuninstall.sh
+https://gitlab.com/sbcarp/setup-ipsec-vpn/-/raw/master/extras/vpnuninstall.sh
 ```
 </details>
 
@@ -88,8 +88,8 @@ Edit `/etc/sysconfig/iptables` and remove unneeded rules. Your original rules (i
 
 ### Fourth step
 
-Edit `/etc/sysctl.conf` and remove the lines after `# Added by hwdsl2 VPN script`.   
-Edit `/etc/rc.local` and remove the lines after `# Added by hwdsl2 VPN script`. DO NOT remove `exit 0` (if any).
+Edit `/etc/sysctl.conf` and remove the lines after `# Added by sbcarp VPN script`.   
+Edit `/etc/rc.local` and remove the lines after `# Added by sbcarp VPN script`. DO NOT remove `exit 0` (if any).
 
 ### Optional
 
@@ -143,7 +143,7 @@ Reboot your server.
 
 ## License
 
-Copyright (C) 2016-2024 [Lin Song](https://github.com/hwdsl2) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
+Copyright (C) 2016-2024 [Lin Song](https://github.com/sbcarp) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)   
 This work is licensed under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/)  

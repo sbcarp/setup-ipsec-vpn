@@ -28,11 +28,11 @@ del_vpn_user() {
   if [ "$(id -u)" != 0 ]; then
     exiterr "Script must be run as root. Try 'sudo bash $0'"
   fi
-  if ! grep -qs "hwdsl2 VPN script" /etc/sysctl.conf \
+  if ! grep -qs "sbcarp VPN script" /etc/sysctl.conf \
     || [ ! -f /etc/ppp/chap-secrets ] || [ ! -f /etc/ipsec.d/passwd ]; then
 cat 1>&2 <<'EOF'
 Error: Your must first set up the IPsec VPN server before deleting VPN users.
-       See: https://github.com/hwdsl2/setup-ipsec-vpn
+       See: https://github.com/sbcarp/setup-ipsec-vpn
 EOF
     exit 1
   fi

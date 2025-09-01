@@ -14,7 +14,7 @@ on: workflow_call
 jobs:
   check_urls:
     runs-on: ubuntu-22.04
-    if: github.repository_owner == 'hwdsl2'
+    if: github.repository_owner == 'sbcarp'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,8 +32,8 @@ jobs:
 
           wg="wget -t 3 -T 30 -nv -O"
           sl="sleep 1"
-          gi="https://raw.githubusercontent.com/hwdsl2/setup-ipsec-vpn/master"
-          gh="https://github.com/hwdsl2/setup-ipsec-vpn/raw/master"
+          gi="https://raw.githubusercontent.com/sbcarp/setup-ipsec-vpn/master"
+          gh="https://github.com/sbcarp/setup-ipsec-vpn/raw/master"
 
           $wg vpnsetup.sh          "$gi/vpnsetup.sh"; $sl
           $wg vpnsetup_centos.sh   "$gi/vpnsetup_centos.sh"; $sl

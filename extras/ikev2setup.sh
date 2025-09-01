@@ -6,7 +6,7 @@
 # DO NOT RUN THIS SCRIPT ON YOUR PC OR MAC!
 #
 # The latest version of this script is available at:
-# https://github.com/hwdsl2/setup-ipsec-vpn
+# https://github.com/sbcarp/setup-ipsec-vpn
 #
 # Copyright (C) 2020-2024 Lin Song <linsongui@gmail.com>
 #
@@ -40,7 +40,7 @@ check_root() {
 
 check_container() {
   in_container=0
-  if grep -qs "hwdsl2" /opt/src/run.sh; then
+  if grep -qs "sbcarp" /opt/src/run.sh; then
     in_container=1
   fi
 }
@@ -127,11 +127,11 @@ EOF
 
 check_libreswan() {
   ipsec_ver=$(ipsec --version 2>/dev/null)
-  if ( ! grep -qs "hwdsl2 VPN script" /etc/sysctl.conf && ! grep -qs "hwdsl2" /opt/src/run.sh ) \
+  if ( ! grep -qs "sbcarp VPN script" /etc/sysctl.conf && ! grep -qs "sbcarp" /opt/src/run.sh ) \
     || ! printf '%s' "$ipsec_ver" | grep -qi 'libreswan'; then
 cat 1>&2 <<'EOF'
 Error: Your must first set up the IPsec VPN server before setting up IKEv2.
-       See: https://github.com/hwdsl2/setup-ipsec-vpn
+       See: https://github.com/sbcarp/setup-ipsec-vpn
 EOF
     exit 1
   fi
@@ -394,7 +394,7 @@ show_export_client() {
 
 get_export_dir() {
   export_to_home_dir=0
-  if grep -qs "hwdsl2" /opt/src/run.sh; then
+  if grep -qs "sbcarp" /opt/src/run.sh; then
     export_dir="/etc/ipsec.d/"
   else
     export_dir=~/
@@ -1399,7 +1399,7 @@ EOF
 }
 
 check_swan_update() {
-  base_url="https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0"
+  base_url="https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0"
   swan_ver_url="$base_url/upg-$os_type-$os_ver-swanver"
   swan_ver_latest=$(wget -t 2 -T 10 -qO- "$swan_ver_url" | head -n 1)
   if printf '%s' "$swan_ver_latest" | grep -Eq '^([3-9]|[1-9][0-9]{1,2})(\.([0-9]|[1-9][0-9]{1,2})){1,2}$' \

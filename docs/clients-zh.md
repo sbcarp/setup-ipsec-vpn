@@ -166,7 +166,7 @@ Add-VpnConnection -Name 'My IPsec VPN' -ServerAddress '你的 VPN 服务器 IP' 
 
 如果你仍然想用 IPsec/L2TP 模式连接，你必须首先编辑 VPN 服务器上的 `/etc/ipsec.conf` 并在 `ike=...` 一行的末尾加上 `,aes256-sha2;modp1024,aes128-sha1;modp1024` 字样。保存文件并运行 `service ipsec restart`。
 
-Docker 用户：在 [你的 env 文件](https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README-zh.md#如何使用本镜像) 中添加 `VPN_ENABLE_MODP1024=yes`，然后重新创建 Docker 容器。
+Docker 用户：在 [你的 env 文件](https://github.com/sbcarp/docker-ipsec-vpn-server/blob/master/README-zh.md#如何使用本镜像) 中添加 `VPN_ENABLE_MODP1024=yes`，然后重新创建 Docker 容器。
 
 然后在你的 Android 设备上进行以下步骤：
 
@@ -525,13 +525,13 @@ ipsec trafficstatus
 
 要解决此错误，在首次连接之前需要修改一次注册表，以解决 VPN 服务器 和/或 客户端与 NAT （比如家用路由器）的兼容问题。请下载并导入下面的 `.reg` 文件，或者打开 [提升权限命令提示符](http://www.cnblogs.com/xxcanghai/p/4610054.html) 并运行以下命令。**完成后必须重启计算机。**
 
-- 适用于 Windows Vista, 7, 8, 10 和 11 ([下载 .reg 文件](https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Windows_Vista_7_8_10_Reboot_Required.reg))
+- 适用于 Windows Vista, 7, 8, 10 和 11 ([下载 .reg 文件](https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Windows_Vista_7_8_10_Reboot_Required.reg))
 
   ```console
   REG ADD HKLM\SYSTEM\CurrentControlSet\Services\PolicyAgent /v AssumeUDPEncapsulationContextOnSendRule /t REG_DWORD /d 0x2 /f
   ```
 
-- 仅适用于 Windows XP ([下载 .reg 文件](https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Windows_XP_ONLY_Reboot_Required.reg))
+- 仅适用于 Windows XP ([下载 .reg 文件](https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Windows_XP_ONLY_Reboot_Required.reg))
 
   ```console
   REG ADD HKLM\SYSTEM\CurrentControlSet\Services\IPSec /v AssumeUDPEncapsulationContextOnSendRule /t REG_DWORD /d 0x2 /f
@@ -539,7 +539,7 @@ ipsec trafficstatus
 
 另外，某些个别的 Windows 系统配置禁用了 IPsec 加密，此时也会导致连接失败。要重新启用它，可以运行以下命令并重启。
 
-- 适用于 Windows XP, Vista, 7, 8, 10 和 11 ([下载 .reg 文件](https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Allow_IPsec_Reboot_Required.reg))
+- 适用于 Windows XP, Vista, 7, 8, 10 和 11 ([下载 .reg 文件](https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0/Fix_VPN_Error_809_Allow_IPsec_Reboot_Required.reg))
 
   ```console
   REG ADD HKLM\SYSTEM\CurrentControlSet\Services\RasMan\Parameters /v ProhibitIpSec /t REG_DWORD /d 0x0 /f
@@ -589,7 +589,7 @@ ipsec trafficstatus
 
 Windows 8, 10 和 11 默认使用 "smart multi-homed name resolution" （智能多宿主名称解析）。如果你的因特网适配器的 DNS 服务器在本地网段上，在使用 Windows 自带的 IPsec VPN 客户端时可能会导致 "DNS 泄漏"。要解决这个问题，你可以 [禁用智能多宿主名称解析](https://www.neowin.net/news/guide-prevent-dns-leakage-while-using-a-vpn-on-windows-10-and-windows-8/)，或者配置你的因特网适配器以使用在你的本地网段之外的 DNS 服务器（比如 8.8.8.8 和 8.8.4.4）。在完成后重启计算机。
 
-另外，如果你的计算机启用了 IPv6，所有的 IPv6 流量（包括 DNS 请求）都将绕过 VPN。要在 Windows 上禁用 IPv6，请看[这里](https://support.microsoft.com/zh-cn/help/929852/guidance-for-configuring-ipv6-in-windows-for-advanced-users)。如果你需要支持 IPv6 的 VPN，可以另外尝试 [OpenVPN](https://github.com/hwdsl2/openvpn-install/blob/master/README-zh.md) 或 [WireGuard](https://github.com/hwdsl2/wireguard-install/blob/master/README-zh.md)。
+另外，如果你的计算机启用了 IPv6，所有的 IPv6 流量（包括 DNS 请求）都将绕过 VPN。要在 Windows 上禁用 IPv6，请看[这里](https://support.microsoft.com/zh-cn/help/929852/guidance-for-configuring-ipv6-in-windows-for-advanced-users)。如果你需要支持 IPv6 的 VPN，可以另外尝试 [OpenVPN](https://github.com/sbcarp/openvpn-install/blob/master/README-zh.md) 或 [WireGuard](https://github.com/sbcarp/wireguard-install/blob/master/README-zh.md)。
 
 ### Android/Linux MTU/MSS 问题
 
@@ -606,7 +606,7 @@ iptables -t mangle -A FORWARD -m policy --pol ipsec --dir out \
 echo 1 > /proc/sys/net/ipv4/ip_no_pmtu_disc
 ```
 
-**Docker 用户：** 要修复这个问题，不需要运行以上命令。你可以在[你的 env 文件](https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README-zh.md#如何使用本镜像)中添加 `VPN_ANDROID_MTU_FIX=yes`，然后重新创建 Docker 容器。
+**Docker 用户：** 要修复这个问题，不需要运行以上命令。你可以在[你的 env 文件](https://github.com/sbcarp/docker-ipsec-vpn-server/blob/master/README-zh.md#如何使用本镜像)中添加 `VPN_ANDROID_MTU_FIX=yes`，然后重新创建 Docker 容器。
 
 参考链接：[[1]](https://www.zeitgeist.se/2013/11/26/mtu-woes-in-ipsec-tunnels-how-to-fix/)。
 
@@ -630,7 +630,7 @@ OS X (macOS) 用户：如果可以成功地使用 IPsec/L2TP 模式连接，但�
 
 为了节约电池，iOS 设备 (iPhone/iPad) 在屏幕变黑（睡眠模式）之后会自动断开 Wi-Fi 连接。这会导致 IPsec VPN 断开。该行为是被[故意设计的](https://discussions.apple.com/thread/2333948)并且不能被配置。
 
-如果需要 VPN 在设备唤醒后自动重连，你可以使用 [IKEv2](ikev2-howto-zh.md) 模式连接（推荐）并启用 "VPN On Demand" 功能。或者你也可以另外尝试使用 [OpenVPN](https://github.com/hwdsl2/openvpn-install/blob/master/README-zh.md)，它支持 [一些选项](https://openvpn.net/vpn-server-resources/faq-regarding-openvpn-connect-ios/) 比如 "Reconnect on Wakeup" 和 "Seamless Tunnel"。
+如果需要 VPN 在设备唤醒后自动重连，你可以使用 [IKEv2](ikev2-howto-zh.md) 模式连接（推荐）并启用 "VPN On Demand" 功能。或者你也可以另外尝试使用 [OpenVPN](https://github.com/sbcarp/openvpn-install/blob/master/README-zh.md)，它支持 [一些选项](https://openvpn.net/vpn-server-resources/faq-regarding-openvpn-connect-ios/) 比如 "Reconnect on Wakeup" 和 "Seamless Tunnel"。
 
 <a name="debian-10-内核"></a>
 Android 设备在进入睡眠模式后也会断开 Wi-Fi 连接。你可以尝试打开 "始终开启 VPN" 选项以保持连接。详情请看 [这里](https://support.google.com/android/answer/9089766?hl=zh-Hans)。
@@ -645,7 +645,7 @@ Debian 用户：运行 `uname -r` 检查你的服务器的 Linux 内核版本。
 
 注： 这个协议仅适用于本文档。
 
-版权所有 (C) 2016-2024 [Lin Song](https://github.com/hwdsl2) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
+版权所有 (C) 2016-2024 [Lin Song](https://github.com/sbcarp) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
 受到 [Joshua Lund 的工作](https://github.com/StreisandEffect/streisand/blob/6aa6b6b2735dd829ca8c417d72eb2768a89b6639/playbooks/roles/l2tp-ipsec/templates/instructions.md.j2) 的启发
 
 本程序为自由软件，在自由软件联盟发布的[ GNU 通用公共许可协议](https://www.gnu.org/licenses/gpl.html)的约束下，你可以对其进行再发布及修改。协议版本为第三版或（随你）更新的版本。

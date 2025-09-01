@@ -9,11 +9,11 @@ assignees: ''
 
 **Checklist**
 
-- [ ] I read the [README](https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/README.md)
-- [ ] I read the [Important notes](https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/README.md#important-notes)
-- [ ] I followed instructions to [configure VPN clients](https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/README.md#next-steps)
-- [ ] I checked [IKEv1 troubleshooting](https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/clients.md#ikev1-troubleshooting), [IKEv2 troubleshooting](https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/ikev2-howto.md#ikev2-troubleshooting) and [VPN status](https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/clients.md#check-logs-and-vpn-status)
-- [ ] I searched existing [Issues](https://github.com/hwdsl2/setup-ipsec-vpn/issues?q=is%3Aissue)
+- [ ] I read the [README](https://github.com/sbcarp/setup-ipsec-vpn/blob/master/README.md)
+- [ ] I read the [Important notes](https://github.com/sbcarp/setup-ipsec-vpn/blob/master/README.md#important-notes)
+- [ ] I followed instructions to [configure VPN clients](https://github.com/sbcarp/setup-ipsec-vpn/blob/master/README.md#next-steps)
+- [ ] I checked [IKEv1 troubleshooting](https://github.com/sbcarp/setup-ipsec-vpn/blob/master/docs/clients.md#ikev1-troubleshooting), [IKEv2 troubleshooting](https://github.com/sbcarp/setup-ipsec-vpn/blob/master/docs/ikev2-howto.md#ikev2-troubleshooting) and [VPN status](https://github.com/sbcarp/setup-ipsec-vpn/blob/master/docs/clients.md#check-logs-and-vpn-status)
+- [ ] I searched existing [Issues](https://github.com/sbcarp/setup-ipsec-vpn/issues?q=is%3Aissue)
 - [ ] This bug is about the VPN setup scripts, and not IPsec VPN itself
 
 <!---
@@ -33,7 +33,7 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 **Logs**
-[Check logs and VPN status](https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/clients.md#check-logs-and-vpn-status), and add error logs to help explain the problem, if applicable.
+[Check logs and VPN status](https://github.com/sbcarp/setup-ipsec-vpn/blob/master/docs/clients.md#check-logs-and-vpn-status), and add error logs to help explain the problem, if applicable.
 
 **Server (please complete the following information)**
 - OS: [e.g. Debian 11]

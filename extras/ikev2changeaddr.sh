@@ -3,7 +3,7 @@
 # Script to change IKEv2 VPN server address
 #
 # The latest version of this script is available at:
-# https://github.com/hwdsl2/setup-ipsec-vpn
+# https://github.com/sbcarp/setup-ipsec-vpn
 #
 # Copyright (C) 2022-2024 Lin Song <linsongui@gmail.com>
 #
@@ -50,11 +50,11 @@ check_os() {
 
 check_libreswan() {
   ipsec_ver=$(ipsec --version 2>/dev/null)
-  if ( ! grep -qs "hwdsl2 VPN script" /etc/sysctl.conf && ! grep -qs "hwdsl2" /opt/src/run.sh ) \
+  if ( ! grep -qs "sbcarp VPN script" /etc/sysctl.conf && ! grep -qs "sbcarp" /opt/src/run.sh ) \
     || ! printf '%s' "$ipsec_ver" | grep -qi 'libreswan'; then
 cat 1>&2 <<'EOF'
 Error: This script can only be used with an IPsec server created using:
-       https://github.com/hwdsl2/setup-ipsec-vpn
+       https://github.com/sbcarp/setup-ipsec-vpn
 EOF
     exit 1
   fi

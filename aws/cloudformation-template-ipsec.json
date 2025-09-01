@@ -6,8 +6,8 @@
                 [
                     "",
                     "AWS Cloudformation Template for deploying IPSec VPN Servers on AWS EC2,",
-                    "based on the work of Lin Song <linsongui@gmail.com> : https://github.com/hwdsl2/setup-ipsec-vpn",
-                    "The latest version of this template can be found at : https://github.com/hwdsl2/setup-ipsec-vpn/aws",
+                    "based on the work of Lin Song <linsongui@gmail.com> : https://github.com/sbcarp/setup-ipsec-vpn",
+                    "The latest version of this template can be found at : https://github.com/sbcarp/setup-ipsec-vpn/aws",
                     "",
                     "Copyright (C) 2020-2024 Scott X. L. <wtanglef@pm.me>",
                     "",
@@ -215,7 +215,7 @@
                                 { "Fn::Sub": "export VPN_IPSEC_PSK='${VpnIpsecPsk}'" },
                                 { "Fn::Sub": "export VPN_USER='${VpnUser}'" },
                                 { "Fn::Sub": "export VPN_PASSWORD='${VpnPassword}'" },
-                                "wget -t 3 -T 30 -nv -O vpn.sh https://github.com/hwdsl2/setup-ipsec-vpn/raw/master/vpnsetup.sh",
+                                "wget -t 3 -T 30 -nv -O vpn.sh https://github.com/sbcarp/setup-ipsec-vpn/raw/master/vpnsetup.sh",
                                 "sh vpn.sh",
                                 "mkdir /root/profiles",
                                 "cp /root/vpnclient* /root/profiles",
@@ -684,7 +684,7 @@
             }
         },
         "5EC2PrivateKeyId": {
-            "Description": "The ID of the key pair created. For more information regarding how to retrieve the private key for authentication, please refer to: https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/aws/README.md#faqs",
+            "Description": "The ID of the key pair created. For more information regarding how to retrieve the private key for authentication, please refer to: https://github.com/sbcarp/setup-ipsec-vpn/blob/master/aws/README.md#faqs",
             "Value": {
                 "Fn::GetAtt": [
                     "KeyPair",
@@ -703,11 +703,11 @@
         },
         "7NextStep": {
             "Description": "Learn how to configure VPN clients.",
-            "Value": "https://github.com/hwdsl2/setup-ipsec-vpn#next-steps"
+            "Value": "https://github.com/sbcarp/setup-ipsec-vpn#next-steps"
         },
         "8WarningForDebianUsers": {
             "Description": "Please be noted that due to Debian images on AWS EC2 using cloud kernels, you are unable to use IPSec/L2TP mode if your server is running Debian. For more information, please refer to the link to the left.",
-            "Value": "https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/clients.md#debian-kernel"
+            "Value": "https://github.com/sbcarp/setup-ipsec-vpn/blob/master/docs/clients.md#debian-kernel"
         },
         "9RetrieveYourIkev2Credentials": {
             "Description": "Please use the following link to download your IKEv2 connection credentials. The password to the ZIP file that stores the credentials, is the same password used to connect to your VPN server. The download link for the credentials will expire in ONE day.",

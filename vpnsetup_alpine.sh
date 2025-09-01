@@ -5,7 +5,7 @@
 # DO NOT RUN THIS SCRIPT ON YOUR PC OR MAC!
 #
 # The latest version of this script is available at:
-# https://github.com/hwdsl2/setup-ipsec-vpn
+# https://github.com/sbcarp/setup-ipsec-vpn
 #
 # Copyright (C) 2021-2024 Lin Song <linsongui@gmail.com>
 #
@@ -143,7 +143,7 @@ check_client_name() {
 }
 
 check_subnets() {
-  if [ -s /etc/ipsec.conf ] && grep -qs "hwdsl2 VPN script" /etc/sysctl.conf; then
+  if [ -s /etc/ipsec.conf ] && grep -qs "sbcarp VPN script" /etc/sysctl.conf; then
     L2TP_NET=${VPN_L2TP_NET:-'192.168.42.0/24'}
     XAUTH_NET=${VPN_XAUTH_NET:-'192.168.43.0/24'}
     if ! grep -q "$L2TP_NET" /etc/ipsec.conf \
@@ -219,8 +219,8 @@ link_scripts() {
 
 get_helper_scripts() {
   bigecho "Downloading helper scripts..."
-  base1="https://raw.githubusercontent.com/hwdsl2/setup-ipsec-vpn/master/extras"
-  base2="https://gitlab.com/hwdsl2/setup-ipsec-vpn/-/raw/master/extras"
+  base1="https://raw.githubusercontent.com/sbcarp/setup-ipsec-vpn/master/extras"
+  base2="https://gitlab.com/sbcarp/setup-ipsec-vpn/-/raw/master/extras"
   sc1=ikev2setup.sh
   sc2=add_vpn_user.sh
   sc3=del_vpn_user.sh
@@ -241,7 +241,7 @@ get_helper_scripts() {
 
 get_swan_ver() {
   SWAN_VER=5.1
-  base_url="https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0"
+  base_url="https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0"
   swan_ver_url="$base_url/v1-$os_type-$os_ver-swanver"
   swan_ver_latest=$(wget -t 2 -T 10 -qO- "$swan_ver_url" | head -n 1)
   [ -z "$swan_ver_latest" ] && swan_ver_latest=$(curl -m 10 -fsL "$swan_ver_url" 2>/dev/null | head -n 1)
@@ -445,11 +445,11 @@ EOF
 
 update_sysctl() {
   bigecho "Updating sysctl settings..."
-  if ! grep -qs "hwdsl2 VPN script" /etc/sysctl.conf; then
+  if ! grep -qs "sbcarp VPN script" /etc/sysctl.conf; then
     conf_bk "/etc/sysctl.conf"
 cat >> /etc/sysctl.conf <<EOF
 
-# Added by hwdsl2 VPN script
+# Added by sbcarp VPN script
 kernel.msgmnb = 65536
 kernel.msgmax = 65536
 
@@ -475,7 +475,7 @@ update_iptables() {
   bigecho "Updating IPTables rules..."
   IPT_FILE=/etc/iptables.rules
   ipt_flag=0
-  if ! grep -qs "hwdsl2 VPN script" "$IPT_FILE"; then
+  if ! grep -qs "sbcarp VPN script" "$IPT_FILE"; then
     ipt_flag=1
   fi
   ipi='iptables -I INPUT'
@@ -501,7 +501,7 @@ update_iptables() {
     iptables -A FORWARD -j DROP
     $ipp -s "$XAUTH_NET" -o "$NET_IFACE" -m policy --dir out --pol none -j MASQUERADE
     $ipp -s "$L2TP_NET" -o "$NET_IFACE" -j MASQUERADE
-    echo "# Modified by hwdsl2 VPN script" > "$IPT_FILE"
+    echo "# Modified by sbcarp VPN script" > "$IPT_FILE"
     iptables-save >> "$IPT_FILE"
   fi
 }

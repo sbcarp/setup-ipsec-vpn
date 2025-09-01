@@ -15,7 +15,7 @@ on:
 
 jobs:
   check_urls:
-    if: github.repository_owner == 'hwdsl2'
+    if: github.repository_owner == 'sbcarp'
     uses: ./.github/workflows/check_urls.yml
 
   test_set_2:

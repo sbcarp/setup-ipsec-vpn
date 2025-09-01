@@ -16,7 +16,7 @@
 
 请单击以下按钮开始：
 
-[![Deploy to Azure](../docs/images/azure-deploy-button.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhwdsl2%2Fsetup-ipsec-vpn%2Fmaster%2Fazure%2Fazuredeploy.json)
+[![Deploy to Azure](../docs/images/azure-deploy-button.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsbcarp%2Fsetup-ipsec-vpn%2Fmaster%2Fazure%2Fazuredeploy.json)
 
 在完成部署之后，Azure 会有提示。下一步：[配置 VPN 客户端](../README-zh.md#下一步)。
 
@@ -25,7 +25,7 @@
 ## 作者
 
 版权所有 (C) 2016 [Daniel Falkner](https://github.com/derdanu)   
-版权所有 (C) 2017-2024 [Lin Song](https://github.com/hwdsl2)
+版权所有 (C) 2017-2024 [Lin Song](https://github.com/sbcarp)
 
 ## 屏幕截图
 

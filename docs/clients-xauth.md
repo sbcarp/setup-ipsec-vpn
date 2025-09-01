@@ -2,7 +2,7 @@
 
 # Configure IPsec/XAuth VPN Clients
 
-After [setting up your own VPN server](https://github.com/hwdsl2/setup-ipsec-vpn), follow these steps to configure your devices. IPsec/XAuth ("Cisco IPsec") is natively supported by Android, iOS and OS X. There is no additional software to install. Windows users can use the free [Shrew Soft client](https://www.shrew.net/download/vpn). In case you are unable to connect, first check to make sure the VPN credentials were entered correctly.
+After [setting up your own VPN server](https://github.com/sbcarp/setup-ipsec-vpn), follow these steps to configure your devices. IPsec/XAuth ("Cisco IPsec") is natively supported by Android, iOS and OS X. There is no additional software to install. Windows users can use the free [Shrew Soft client](https://www.shrew.net/download/vpn). In case you are unable to connect, first check to make sure the VPN credentials were entered correctly.
 
 IPsec/XAuth mode is also called "Cisco IPsec". This mode is generally **faster than** IPsec/L2TP with less overhead.
 
@@ -91,7 +91,7 @@ If you get an error when trying to connect, see [Troubleshooting](clients.md#ike
 
 If you still want to connect using IPsec/XAuth mode, you must first edit `/etc/ipsec.conf` on the VPN server. Find the line `ike=...` and append `,aes256-sha2;modp1024,aes128-sha1;modp1024` at the end. Save the file and run `service ipsec restart`.
 
-Docker users: Add `VPN_ENABLE_MODP1024=yes` to [your env file](https://github.com/hwdsl2/docker-ipsec-vpn-server#how-to-use-this-image), then re-create the Docker container.
+Docker users: Add `VPN_ENABLE_MODP1024=yes` to [your env file](https://github.com/sbcarp/docker-ipsec-vpn-server#how-to-use-this-image), then re-create the Docker container.
 
 After that, follow the steps below on your Android device:
 
@@ -168,7 +168,7 @@ Other Linux users can connect using [IPsec/L2TP](clients.md#linux) mode.
 
 Note: This license applies to this document only.
 
-Copyright (C) 2016-2024 [Lin Song](https://github.com/hwdsl2) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
+Copyright (C) 2016-2024 [Lin Song](https://github.com/sbcarp) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
 Inspired by [the work of Joshua Lund](https://github.com/StreisandEffect/streisand/blob/6aa6b6b2735dd829ca8c417d72eb2768a89b6639/playbooks/roles/l2tp-ipsec/templates/instructions.md.j2)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.

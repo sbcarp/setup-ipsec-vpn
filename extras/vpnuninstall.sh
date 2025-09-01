@@ -5,7 +5,7 @@
 # DO NOT RUN THIS SCRIPT ON YOUR PC OR MAC!
 #
 # The latest version of this script is available at:
-# https://github.com/hwdsl2/setup-ipsec-vpn
+# https://github.com/sbcarp/setup-ipsec-vpn
 #
 # Copyright (C) 2021-2024 Lin Song <linsongui@gmail.com>
 #
@@ -78,7 +78,7 @@ EOF
 
 check_libreswan() {
   ipsec_ver=$(ipsec --version 2>/dev/null)
-  if ! grep -qs "hwdsl2 VPN script" /etc/sysctl.conf \
+  if ! grep -qs "sbcarp VPN script" /etc/sysctl.conf \
     || ! printf '%s' "$ipsec_ver" | grep -qi 'libreswan'; then
     exiterr "Cannot remove IPsec VPN because it has not been set up on this server."
   fi
@@ -181,20 +181,20 @@ remove_helper_scripts() {
 }
 
 update_sysctl() {
-  if grep -qs "hwdsl2 VPN script" /etc/sysctl.conf; then
+  if grep -qs "sbcarp VPN script" /etc/sysctl.conf; then
     bigecho "Updating sysctl settings..."
     conf_bk "/etc/sysctl.conf"
     count=17
-    line1=$(grep -A 18 "hwdsl2 VPN script" /etc/sysctl.conf | tail -n 1)
-    line2=$(grep -A 19 "hwdsl2 VPN script" /etc/sysctl.conf | tail -n 1)
+    line1=$(grep -A 18 "sbcarp VPN script" /etc/sysctl.conf | tail -n 1)
+    line2=$(grep -A 19 "sbcarp VPN script" /etc/sysctl.conf | tail -n 1)
     if [ "$line1" = "net.core.default_qdisc = fq" ] \
       && [ "$line2" = "net.ipv4.tcp_congestion_control = bbr" ]; then
         count=19
     fi
     if [ "$os_type" = "alpine" ]; then
-      sed -i "/# Added by hwdsl2 VPN script/,+${count}d" /etc/sysctl.conf
+      sed -i "/# Added by sbcarp VPN script/,+${count}d" /etc/sysctl.conf
     else
-      sed --follow-symlinks -i "/# Added by hwdsl2 VPN script/,+${count}d" /etc/sysctl.conf
+      sed --follow-symlinks -i "/# Added by sbcarp VPN script/,+${count}d" /etc/sysctl.conf
     fi
     if [ ! -f /usr/bin/wg-quick ] && [ ! -f /usr/sbin/openvpn ]; then
       echo 0 > /proc/sys/net/ipv4/ip_forward
@@ -204,13 +204,13 @@ update_sysctl() {
 }
 
 update_rclocal() {
-  if grep -qs "hwdsl2 VPN script" /etc/rc.local; then
+  if grep -qs "sbcarp VPN script" /etc/rc.local; then
     bigecho "Updating rc.local..."
     conf_bk "/etc/rc.local"
     if [ "$os_type" = "alpine" ]; then
-      sed -i '/# Added by hwdsl2 VPN script/,+4d' /etc/rc.local
+      sed -i '/# Added by sbcarp VPN script/,+4d' /etc/rc.local
     else
-      sed --follow-symlinks -i '/# Added by hwdsl2 VPN script/,+4d' /etc/rc.local
+      sed --follow-symlinks -i '/# Added by sbcarp VPN script/,+4d' /etc/rc.local
     fi
   fi
 }
@@ -238,13 +238,13 @@ update_iptables_rules() {
     IPT_FILE2=/etc/iptables/rules.v4
   else
     IPT_FILE=/etc/sysconfig/iptables
-    if grep -qs "hwdsl2 VPN script" /etc/sysconfig/nftables.conf; then
+    if grep -qs "sbcarp VPN script" /etc/sysconfig/nftables.conf; then
       use_nft=1
       IPT_FILE=/etc/sysconfig/nftables.conf
     fi
   fi
   ipt_flag=0
-  if grep -qs "hwdsl2 VPN script" "$IPT_FILE"; then
+  if grep -qs "sbcarp VPN script" "$IPT_FILE"; then
     ipt_flag=1
   fi
   ipi='iptables -D INPUT'

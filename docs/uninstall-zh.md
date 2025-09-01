@@ -29,8 +29,8 @@ curl -fsSL https://get.vpnsetup.net/unst -o unst.sh && sudo bash unst.sh
 或者，你也可以使用这些链接：
 
 ```bash
-https://github.com/hwdsl2/setup-ipsec-vpn/raw/master/extras/vpnuninstall.sh
-https://gitlab.com/hwdsl2/setup-ipsec-vpn/-/raw/master/extras/vpnuninstall.sh
+https://github.com/sbcarp/setup-ipsec-vpn/raw/master/extras/vpnuninstall.sh
+https://gitlab.com/sbcarp/setup-ipsec-vpn/-/raw/master/extras/vpnuninstall.sh
 ```
 </details>
 
@@ -88,8 +88,8 @@ rm -f /etc/init/ipsec.conf /lib/systemd/system/ipsec.service /etc/init.d/ipsec \
 
 ### 第四步
 
-编辑 `/etc/sysctl.conf` 并删除该标记后面的行： `# Added by hwdsl2 VPN script`。   
-编辑 `/etc/rc.local` 并删除该标记后面的行： `# Added by hwdsl2 VPN script`。\*不要\* 删除 `exit 0` （如果有）。
+编辑 `/etc/sysctl.conf` 并删除该标记后面的行： `# Added by sbcarp VPN script`。   
+编辑 `/etc/rc.local` 并删除该标记后面的行： `# Added by sbcarp VPN script`。\*不要\* 删除 `exit 0` （如果有）。
 
 ### 可选步骤
 
@@ -143,7 +143,7 @@ apk del fail2ban
 
 ## 授权协议
 
-版权所有 (C) 2016-2024 [Lin Song](https://github.com/hwdsl2) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
+版权所有 (C) 2016-2024 [Lin Song](https://github.com/sbcarp) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)   
 这个项目是以 [知识共享署名-相同方式共享3.0](http://creativecommons.org/licenses/by-sa/3.0/) 许可协议授权。   

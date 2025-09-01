@@ -18,7 +18,7 @@ Modern operating systems support the IKEv2 standard. Internet Key Exchange (IKE 
 
 Libreswan can authenticate IKEv2 clients on the basis of X.509 Machine Certificates using RSA signatures. This method does not require an IPsec PSK, username or password. It can be used with Windows, macOS, iOS, Android, Chrome OS, Linux and RouterOS.
 
-By default, IKEv2 is automatically set up when running the VPN setup script. If you want to learn more about setting up IKEv2, see [Set up IKEv2 using helper script](#set-up-ikev2-using-helper-script). Docker users, see [Configure and use IKEv2 VPN](https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README.md#configure-and-use-ikev2-vpn).
+By default, IKEv2 is automatically set up when running the VPN setup script. If you want to learn more about setting up IKEv2, see [Set up IKEv2 using helper script](#set-up-ikev2-using-helper-script). Docker users, see [Configure and use IKEv2 VPN](https://github.com/sbcarp/docker-ipsec-vpn-server/blob/master/README.md#configure-and-use-ikev2-vpn).
 
 ## Configure IKEv2 VPN clients
 
@@ -49,7 +49,7 @@ In certain circumstances, you may need to change the IKEv2 server address. For e
 **Windows 8, 10 and 11** users can automatically import IKEv2 configuration:
 
 1. Securely transfer the generated `.p12` file to your computer.
-1. Right-click on [ikev2_config_import.cmd](https://github.com/hwdsl2/vpn-extras/releases/latest/download/ikev2_config_import.cmd) and save this helper script to the **same folder** as the `.p12` file.
+1. Right-click on [ikev2_config_import.cmd](https://github.com/sbcarp/vpn-extras/releases/latest/download/ikev2_config_import.cmd) and save this helper script to the **same folder** as the `.p12` file.
 1. Right-click on the saved script, select **Properties**. Click on **Unblock** at the bottom, then click on **OK**.
 1. Right-click on the saved script, select **Run as administrator** and follow the prompts.
 
@@ -100,7 +100,7 @@ Alternatively, **Windows 7, 8, 10 and 11** users can manually import IKEv2 confi
 
    Enable stronger ciphers for IKEv2 with a one-time registry change. Download and import the `.reg` file below, or run the following from an elevated command prompt. Read more [here](https://docs.strongswan.org/docs/5.9/interop/windowsClients.html).
 
-   - For Windows 7, 8, 10 and 11 ([download .reg file](https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0/Enable_Stronger_Ciphers_for_IKEv2_on_Windows.reg))
+   - For Windows 7, 8, 10 and 11 ([download .reg file](https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0/Enable_Stronger_Ciphers_for_IKEv2_on_Windows.reg))
 
      ```console
      REG ADD HKLM\SYSTEM\CurrentControlSet\Services\RasMan\Parameters /v NegotiateDH2048_AES256 /t REG_DWORD /d 0x1 /f
@@ -490,7 +490,7 @@ You can then set up and enable the VPN connection:
 1. Click **Add** to save the VPN connection information.
 1. Turn the **VPN** switch ON.
 
-Alternatively, you may connect using the command line. See [#1399](https://github.com/hwdsl2/setup-ipsec-vpn/issues/1399) and [#1007](https://github.com/hwdsl2/setup-ipsec-vpn/issues/1007) for example steps. If you encounter error `Could not find source connection`, edit `/etc/netplan/01-netcfg.yaml` and replace `renderer: networkd` with `renderer: NetworkManager`, then run `sudo netplan apply`. To connect to the VPN, run `sudo nmcli c up VPN`. To disconnect: `sudo nmcli c down VPN`.
+Alternatively, you may connect using the command line. See [#1399](https://github.com/sbcarp/setup-ipsec-vpn/issues/1399) and [#1007](https://github.com/sbcarp/setup-ipsec-vpn/issues/1007) for example steps. If you encounter error `Could not find source connection`, edit `/etc/netplan/01-netcfg.yaml` and replace `renderer: networkd` with `renderer: NetworkManager`, then run `sudo netplan apply`. To connect to the VPN, run `sudo nmcli c up VPN`. To disconnect: `sudo nmcli c down VPN`.
 
 Once connected, you can verify that your traffic is being routed properly by [looking up your IP address on Google](https://www.google.com/search?q=my+ip). It should say "Your public IP address is `Your VPN Server IP`".
 
@@ -564,7 +564,7 @@ for the entire network, or use `192.168.0.10` for just one device, and so on.
        peer=ike2-rw-client policy-template-group=ike2-rw
    /ip ipsec policy add group=ike2-rw proposal=ike2-rw template=yes
    ```
-4. For more information, see [#1112](https://github.com/hwdsl2/setup-ipsec-vpn/issues/1112#issuecomment-1059628623).
+4. For more information, see [#1112](https://github.com/sbcarp/setup-ipsec-vpn/issues/1112#issuecomment-1059628623).
 
 > tested on   
 > mar/02/2022 12:52:57 by RouterOS 6.48   
@@ -591,19 +591,19 @@ for the entire network, or use `192.168.0.10` for just one device, and so on.
 
 First, make sure that the VPN server address specified on your VPN client device **exactly matches** the server address in the output of the IKEv2 helper script. For example, you cannot use a DNS name to connect if it was not specified when setting up IKEv2. To change the IKEv2 server address, read [this section](#change-ikev2-server-address).
 
-For servers with an external firewall (e.g. [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)/[GCE](https://cloud.google.com/vpc/docs/firewalls)), open UDP ports 500 and 4500 for the VPN. Aliyun users, see [#433](https://github.com/hwdsl2/setup-ipsec-vpn/issues/433).
+For servers with an external firewall (e.g. [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)/[GCE](https://cloud.google.com/vpc/docs/firewalls)), open UDP ports 500 and 4500 for the VPN. Aliyun users, see [#433](https://github.com/sbcarp/setup-ipsec-vpn/issues/433).
 
 [Check logs and VPN status](clients.md#check-logs-and-vpn-status) for errors. If you encounter retransmission related errors and are unable to connect, there may be network issues between the VPN client and server. If you are connecting from mainland China, consider switching to alternative solutions other than IPsec VPN.
 
 ### Ubuntu 20.04 cannot import client config
 
-If you installed the IPsec VPN before 2024-04-10, and your VPN server runs Ubuntu Linux version 20.04, you may have encountered an issue where newly generated client configuration files (`.mobileconfig`) fail to import on iOS or macOS device(s) with errors like "incorrect password". This could be caused by updates to libnss3 related packages on Ubuntu 20.04, which required some changes ([25670f3](https://github.com/hwdsl2/setup-ipsec-vpn/commit/25670f3)) in the IKEv2 script.
+If you installed the IPsec VPN before 2024-04-10, and your VPN server runs Ubuntu Linux version 20.04, you may have encountered an issue where newly generated client configuration files (`.mobileconfig`) fail to import on iOS or macOS device(s) with errors like "incorrect password". This could be caused by updates to libnss3 related packages on Ubuntu 20.04, which required some changes ([25670f3](https://github.com/sbcarp/setup-ipsec-vpn/commit/25670f3)) in the IKEv2 script.
 
 To fix this issue, first update the IKEv2 script on your server to the latest version using [these instructions](#update-ikev2-helper-script). After that, run `sudo ikev2.sh` and select "export" to re-create the client configuration files.
 
 ### macOS Sonoma clients reconnect
 
-macOS 14 (Sonoma) has [a minor issue](https://github.com/hwdsl2/setup-ipsec-vpn/issues/1486) that may cause IKEv2 VPN to disconnect and reconnect once every 24-48 minutes. Other macOS versions are not affected. First [check your macOS version](https://support.apple.com/en-us/HT201260). To work around this issue, follow the steps below.
+macOS 14 (Sonoma) has [a minor issue](https://github.com/sbcarp/setup-ipsec-vpn/issues/1486) that may cause IKEv2 VPN to disconnect and reconnect once every 24-48 minutes. Other macOS versions are not affected. First [check your macOS version](https://support.apple.com/en-us/HT201260). To work around this issue, follow the steps below.
 
 **Note:** If you installed IPsec VPN after December 10, 2023, no action is required because the following fixes are already included.
 
@@ -615,7 +615,7 @@ macOS 14 (Sonoma) has [a minor issue](https://github.com/hwdsl2/setup-ipsec-vpn/
    ```
      ike=aes_gcm_c_256-hmac_sha2_256-ecp_256,aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1
    ```
-   **Note:** Docker users should first [open a Bash shell inside the container](https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/docs/advanced-usage.md#bash-shell-inside-container).
+   **Note:** Docker users should first [open a Bash shell inside the container](https://github.com/sbcarp/docker-ipsec-vpn-server/blob/master/docs/advanced-usage.md#bash-shell-inside-container).
 1. Save the file and run `service ipsec restart`. Docker users: After step 4 below, `exit` the container and run `docker restart ipsec-vpn-server`.
 1. Edit `/opt/src/ikev2.sh` on the VPN server. Find and replace the following sections with these new values:
    ```
@@ -643,7 +643,7 @@ macOS 14 (Sonoma) has [a minor issue](https://github.com/hwdsl2/setup-ipsec-vpn/
      </dict>
    ```
 1. Run `sudo ikev2.sh` to export (or add) updated client config files for each macOS device you have.
-1. Remove the previously imported IKEv2 profile (if any) from your macOS device(s), then import the updated `.mobileconfig` file(s). See [Configure IKEv2 VPN clients](#configure-ikev2-vpn-clients). Docker users, see [Configure and use IKEv2 VPN](https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README.md#configure-and-use-ikev2-vpn).
+1. Remove the previously imported IKEv2 profile (if any) from your macOS device(s), then import the updated `.mobileconfig` file(s). See [Configure IKEv2 VPN clients](#configure-ikev2-vpn-clients). Docker users, see [Configure and use IKEv2 VPN](https://github.com/sbcarp/docker-ipsec-vpn-server/blob/master/README.md#configure-and-use-ikev2-vpn).
 
 ### Unable to connect multiple IKEv2 clients
 
@@ -663,7 +663,7 @@ If you encounter this error, make sure that the VPN server address specified on 
 
 To fix this error, you will need to enable stronger ciphers for IKEv2 with a one-time registry change. Download and import the `.reg` file below, or run the following from an elevated command prompt.
 
-- For Windows 7, 8, 10 and 11 ([download .reg file](https://github.com/hwdsl2/vpn-extras/releases/download/v1.0.0/Enable_Stronger_Ciphers_for_IKEv2_on_Windows.reg))
+- For Windows 7, 8, 10 and 11 ([download .reg file](https://github.com/sbcarp/vpn-extras/releases/download/v1.0.0/Enable_Stronger_Ciphers_for_IKEv2_on_Windows.reg))
 
 ```console
 REG ADD HKLM\SYSTEM\CurrentControlSet\Services\RasMan\Parameters /v NegotiateDH2048_AES256 /t REG_DWORD /d 0x1 /f
@@ -901,7 +901,7 @@ sudo bash ikev2addr.sh
 
 ## Update IKEv2 helper script
 
-The IKEv2 helper script is updated from time to time for bug fixes and improvements ([commit log](https://github.com/hwdsl2/setup-ipsec-vpn/commits/master/extras/ikev2setup.sh)). When a newer version is available, you may optionally update the IKEv2 helper script on your server. Note that these commands will overwrite any existing `ikev2.sh`.
+The IKEv2 helper script is updated from time to time for bug fixes and improvements ([commit log](https://github.com/sbcarp/setup-ipsec-vpn/commits/master/extras/ikev2setup.sh)). When a newer version is available, you may optionally update the IKEv2 helper script on your server. Note that these commands will overwrite any existing `ikev2.sh`.
 
 ```bash
 wget https://get.vpnsetup.net/ikev2 -O /opt/src/ikev2.sh
@@ -912,7 +912,7 @@ chmod +x /opt/src/ikev2.sh && ln -s /opt/src/ikev2.sh /usr/bin 2>/dev/null
 
 **Note:** By default, IKEv2 is automatically set up when running the VPN setup script. You may skip this section and continue to [configure IKEv2 VPN clients](#configure-ikev2-vpn-clients).
 
-**Important:** Before continuing, you should have successfully [set up your own VPN server](https://github.com/hwdsl2/setup-ipsec-vpn). Docker users, see [Configure and use IKEv2 VPN](https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README.md#configure-and-use-ikev2-vpn).
+**Important:** Before continuing, you should have successfully [set up your own VPN server](https://github.com/sbcarp/setup-ipsec-vpn). Docker users, see [Configure and use IKEv2 VPN](https://github.com/sbcarp/docker-ipsec-vpn-server/blob/master/README.md#configure-and-use-ikev2-vpn).
 
 Use this [helper script](../extras/ikev2setup.sh) to automatically set up IKEv2 on the VPN server:
 
@@ -1280,7 +1280,7 @@ To manually remove IKEv2 from the VPN server, but keep the [IPsec/L2TP](clients.
 
 ## License
 
-Copyright (C) 2016-2024 [Lin Song](https://github.com/hwdsl2) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
+Copyright (C) 2016-2024 [Lin Song](https://github.com/sbcarp) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)   
 This work is licensed under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/)  

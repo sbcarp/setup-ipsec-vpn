@@ -2,7 +2,7 @@
 
 # IPsec VPN Server Auto Setup Scripts
 
-[![Build Status](https://github.com/hwdsl2/setup-ipsec-vpn/actions/workflows/main.yml/badge.svg)](https://github.com/hwdsl2/setup-ipsec-vpn/actions/workflows/main.yml) [![GitHub Stars](docs/images/badges/github-stars.svg)](https://github.com/hwdsl2/setup-ipsec-vpn/stargazers) [![Docker Stars](docs/images/badges/docker-stars.svg)](https://github.com/hwdsl2/docker-ipsec-vpn-server) [![Docker Pulls](docs/images/badges/docker-pulls.svg)](https://github.com/hwdsl2/docker-ipsec-vpn-server)
+[![Build Status](https://github.com/sbcarp/setup-ipsec-vpn/actions/workflows/main.yml/badge.svg)](https://github.com/sbcarp/setup-ipsec-vpn/actions/workflows/main.yml) [![GitHub Stars](docs/images/badges/github-stars.svg)](https://github.com/sbcarp/setup-ipsec-vpn/stargazers) [![Docker Stars](docs/images/badges/docker-stars.svg)](https://github.com/sbcarp/docker-ipsec-vpn-server) [![Docker Pulls](docs/images/badges/docker-pulls.svg)](https://github.com/sbcarp/docker-ipsec-vpn-server)
 
 Set up your own IPsec VPN server in just a few minutes, with IPsec/L2TP, Cisco IPsec and IKEv2.
 
@@ -24,7 +24,7 @@ wget https://get.vpnsetup.net -O vpn.sh && sudo sh vpn.sh
 
 Your VPN login details will be randomly generated, and displayed when finished.
 
-**Optional:** Install [WireGuard](https://github.com/hwdsl2/wireguard-install) and/or [OpenVPN](https://github.com/hwdsl2/openvpn-install) on the same server.
+**Optional:** Install [WireGuard](https://github.com/sbcarp/wireguard-install) and/or [OpenVPN](https://github.com/sbcarp/openvpn-install) on the same server.
 
 <details>
 <summary>
@@ -49,14 +49,14 @@ curl -fsSL https://get.vpnsetup.net -o vpn.sh && sudo sh vpn.sh
 Alternative setup URLs:
 
 ```bash
-https://github.com/hwdsl2/setup-ipsec-vpn/raw/master/vpnsetup.sh
-https://gitlab.com/hwdsl2/setup-ipsec-vpn/-/raw/master/vpnsetup.sh
+https://github.com/sbcarp/setup-ipsec-vpn/raw/master/vpnsetup.sh
+https://gitlab.com/sbcarp/setup-ipsec-vpn/-/raw/master/vpnsetup.sh
 ```
 
 If you are unable to download, open [vpnsetup.sh](vpnsetup.sh), then click the `Raw` button on the right. Press `Ctrl/Cmd+A` to select all, `Ctrl/Cmd+C` to copy, then paste into your favorite editor.
 </details>
 
-A pre-built [Docker image](https://github.com/hwdsl2/docker-ipsec-vpn-server) is also available. For other options and client setup, read the sections below.
+A pre-built [Docker image](https://github.com/sbcarp/docker-ipsec-vpn-server) is also available. For other options and client setup, read the sections below.
 
 \* A cloud server, virtual private server (VPS) or dedicated server.
 
@@ -100,7 +100,7 @@ Quick deploy to:
 
 For servers with an external firewall (e.g. [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)/[GCE](https://cloud.google.com/vpc/docs/firewalls)), open UDP ports 500 and 4500 for the VPN.
 
-A pre-built [Docker image](https://github.com/hwdsl2/docker-ipsec-vpn-server) is also available. Advanced users can install on a [Raspberry Pi](https://www.raspberrypi.com). [[1]](https://elasticbyte.net/posts/setting-up-a-native-cisco-ipsec-vpn-server-using-a-raspberry-pi/) [[2]](https://www.stewright.me/2018/07/create-a-raspberry-pi-vpn-server-using-l2tpipsec/)
+A pre-built [Docker image](https://github.com/sbcarp/docker-ipsec-vpn-server) is also available. Advanced users can install on a [Raspberry Pi](https://www.raspberrypi.com). [[1]](https://elasticbyte.net/posts/setting-up-a-native-cisco-ipsec-vpn-server-using-a-raspberry-pi/) [[2]](https://www.stewright.me/2018/07/create-a-raspberry-pi-vpn-server-using-l2tpipsec/)
 
 :warning: **DO NOT** run these scripts on your PC or Mac! They should only be used on a server!
 
@@ -139,7 +139,7 @@ VPN_PASSWORD='your_vpn_password' \
 sh vpn.sh
 ```
 
-You may optionally install [WireGuard](https://github.com/hwdsl2/wireguard-install) and/or [OpenVPN](https://github.com/hwdsl2/openvpn-install) on the same server. If your server runs CentOS Stream, Rocky Linux or AlmaLinux, first install OpenVPN/WireGuard, then install the IPsec VPN.
+You may optionally install [WireGuard](https://github.com/sbcarp/wireguard-install) and/or [OpenVPN](https://github.com/sbcarp/openvpn-install) on the same server. If your server runs CentOS Stream, Rocky Linux or AlmaLinux, first install OpenVPN/WireGuard, then install the IPsec VPN.
 
 <details>
 <summary>
@@ -156,8 +156,8 @@ sudo sh vpn.sh
 Alternative setup URLs:
 
 ```bash
-https://github.com/hwdsl2/setup-ipsec-vpn/raw/master/vpnsetup.sh
-https://gitlab.com/hwdsl2/setup-ipsec-vpn/-/raw/master/vpnsetup.sh
+https://github.com/sbcarp/setup-ipsec-vpn/raw/master/vpnsetup.sh
+https://gitlab.com/sbcarp/setup-ipsec-vpn/-/raw/master/vpnsetup.sh
 ```
 
 If you are unable to download, open [vpnsetup.sh](vpnsetup.sh), then click the `Raw` button on the right. Press `Ctrl/Cmd+A` to select all, `Ctrl/Cmd+C` to copy, then paste into your favorite editor.
@@ -322,7 +322,7 @@ Enjoy your very own VPN! :sparkles::tada::rocket::sparkles:
 
 The same VPN account can be used by your multiple devices. However, due to an IPsec/L2TP limitation, if you wish to connect multiple devices from behind the same NAT (e.g. home router), you must use [IKEv2](docs/ikev2-howto.md) or [IPsec/XAuth](docs/clients-xauth.md) mode. To view or update VPN user accounts, see [Manage VPN users](docs/manage-users.md).
 
-For servers with an external firewall (e.g. [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)/[GCE](https://cloud.google.com/vpc/docs/firewalls)), open UDP ports 500 and 4500 for the VPN. Aliyun users, see [#433](https://github.com/hwdsl2/setup-ipsec-vpn/issues/433).
+For servers with an external firewall (e.g. [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)/[GCE](https://cloud.google.com/vpc/docs/firewalls)), open UDP ports 500 and 4500 for the VPN. Aliyun users, see [#433](https://github.com/sbcarp/setup-ipsec-vpn/issues/433).
 
 Clients are set to use [Google Public DNS](https://developers.google.com/speed/public-dns/) when the VPN is active. If another DNS provider is preferred, see [Advanced usage](docs/advanced-usage.md).
 
@@ -352,8 +352,8 @@ curl -fsSL https://get.vpnsetup.net/upg -o vpnup.sh && sudo sh vpnup.sh
 Alternative update URLs:
 
 ```bash
-https://github.com/hwdsl2/setup-ipsec-vpn/raw/master/extras/vpnupgrade.sh
-https://gitlab.com/hwdsl2/setup-ipsec-vpn/-/raw/master/extras/vpnupgrade.sh
+https://github.com/sbcarp/setup-ipsec-vpn/raw/master/extras/vpnupgrade.sh
+https://gitlab.com/sbcarp/setup-ipsec-vpn/-/raw/master/extras/vpnupgrade.sh
 ```
 
 If you are unable to download, open [vpnupgrade.sh](extras/vpnupgrade.sh), then click the `Raw` button on the right. Press `Ctrl/Cmd+A` to select all, `Ctrl/Cmd+C` to copy, then paste into your favorite editor.
@@ -413,8 +413,8 @@ curl -fsSL https://get.vpnsetup.net/unst -o unst.sh && sudo bash unst.sh
 Alternative script URLs:
 
 ```bash
-https://github.com/hwdsl2/setup-ipsec-vpn/raw/master/extras/vpnuninstall.sh
-https://gitlab.com/hwdsl2/setup-ipsec-vpn/-/raw/master/extras/vpnuninstall.sh
+https://github.com/sbcarp/setup-ipsec-vpn/raw/master/extras/vpnuninstall.sh
+https://gitlab.com/sbcarp/setup-ipsec-vpn/-/raw/master/extras/vpnuninstall.sh
 ```
 </details>
 
@@ -422,14 +422,14 @@ For more information, see [Uninstall the VPN](docs/uninstall.md).
 
 ## Feedback & Questions
 
-- Have a suggestion for this project? Open an [Enhancement request](https://github.com/hwdsl2/setup-ipsec-vpn/issues/new/choose). [Pull requests](https://github.com/hwdsl2/setup-ipsec-vpn/pulls) are also welcome.
-- If you found a reproducible bug, open a bug report for the [IPsec VPN](https://github.com/libreswan/libreswan/issues?q=is%3Aissue) or for the [VPN scripts](https://github.com/hwdsl2/setup-ipsec-vpn/issues/new/choose).
-- Got a question? Please first search [existing issues](https://github.com/hwdsl2/setup-ipsec-vpn/issues?q=is%3Aissue) and comments [in this Gist](https://gist.github.com/hwdsl2/9030462#comments) and [on my blog](https://blog.ls20.com/ipsec-l2tp-vpn-auto-setup-for-ubuntu-12-04-on-amazon-ec2/#disqus_thread).
+- Have a suggestion for this project? Open an [Enhancement request](https://github.com/sbcarp/setup-ipsec-vpn/issues/new/choose). [Pull requests](https://github.com/sbcarp/setup-ipsec-vpn/pulls) are also welcome.
+- If you found a reproducible bug, open a bug report for the [IPsec VPN](https://github.com/libreswan/libreswan/issues?q=is%3Aissue) or for the [VPN scripts](https://github.com/sbcarp/setup-ipsec-vpn/issues/new/choose).
+- Got a question? Please first search [existing issues](https://github.com/sbcarp/setup-ipsec-vpn/issues?q=is%3Aissue) and comments [in this Gist](https://gist.github.com/sbcarp/9030462#comments) and [on my blog](https://blog.ls20.com/ipsec-l2tp-vpn-auto-setup-for-ubuntu-12-04-on-amazon-ec2/#disqus_thread).
 - Ask VPN related questions on the [Libreswan](https://lists.libreswan.org/mailman/listinfo/swan) or [strongSwan](https://lists.strongswan.org/mailman/listinfo/users) mailing list, or read these wikis: [[1]](https://libreswan.org/wiki/Main_Page) [[2]](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-securing_virtual_private_networks) [[3]](https://wiki.strongswan.org/projects/strongswan/wiki/UserDocumentation) [[4]](https://wiki.gentoo.org/wiki/IPsec_L2TP_VPN_server) [[5]](https://wiki.archlinux.org/index.php/Openswan_L2TP/IPsec_VPN_client_setup).
 
 ## License
 
-Copyright (C) 2014-2024 [Lin Song](https://github.com/hwdsl2) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
+Copyright (C) 2014-2024 [Lin Song](https://github.com/sbcarp) [![View my profile on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/linsongui)   
 Based on [the work of Thomas Sarlandie](https://github.com/sarfata/voodooprivacy) (Copyright 2012)
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)   

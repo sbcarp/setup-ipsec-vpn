@@ -21,7 +21,7 @@
 
 确保使用 **AWS 账户根用户** 或者有 **管理员权限** 的 **IAM 用户** 部署此模板。
 
-右键单击这个 [**模板链接**](https://raw.githubusercontent.com/hwdsl2/setup-ipsec-vpn/master/aws/cloudformation-template-ipsec.json)，并将它保存到你的计算机上的一个新文件。然后在 ["创建堆栈" 向导](https://console.aws.amazon.com/cloudformation/home#/stacks/new)中将其作为模板源上传。要指定一个 AWS 区域，你可以使用导航栏上你的帐户信息右侧的选择器。继续创建堆栈，在最后一步你需要确认（选择）此模板可以创建 IAM 资源。
+右键单击这个 [**模板链接**](https://raw.githubusercontent.com/sbcarp/setup-ipsec-vpn/master/aws/cloudformation-template-ipsec.json)，并将它保存到你的计算机上的一个新文件。然后在 ["创建堆栈" 向导](https://console.aws.amazon.com/cloudformation/home#/stacks/new)中将其作为模板源上传。要指定一个 AWS 区域，你可以使用导航栏上你的帐户信息右侧的选择器。继续创建堆栈，在最后一步你需要确认（选择）此模板可以创建 IAM 资源。
 
 当你在最后一步中点击 "create stack" 之后，请等待堆栈创建和 VPN 安装完成，可能需要最多 15 分钟。一旦堆栈的部署状态变成 **"CREATE_COMPLETE"** ，你就可以连接到 VPN 服务器了。单击 **Outputs** 选项卡以查看你的 VPN 登录信息，然后继续下一步：[配置 VPN 客户端](../README-zh.md#下一步)。
 

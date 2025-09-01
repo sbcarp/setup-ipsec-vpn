@@ -6,7 +6,7 @@
 # DO NOT RUN THIS SCRIPT ON YOUR PC OR MAC!
 #
 # The latest version of this script is available at:
-# https://github.com/hwdsl2/setup-ipsec-vpn
+# https://github.com/sbcarp/setup-ipsec-vpn
 #
 # Copyright (C) 2021-2024 Lin Song <linsongui@gmail.com>
 #
@@ -60,7 +60,7 @@ check_lxc() {
   if [ "$container" = "lxc" ] && [ ! -e /dev/ppp ]; then
 cat 1>&2 <<'EOF'
 Error: /dev/ppp is missing. LXC containers require configuration.
-       See: https://github.com/hwdsl2/setup-ipsec-vpn/issues/1014
+       See: https://github.com/sbcarp/setup-ipsec-vpn/issues/1014
 EOF
   exit 1
   fi
@@ -259,8 +259,8 @@ install_pkgs() {
 }
 
 get_setup_url() {
-  base_url1="https://raw.githubusercontent.com/hwdsl2/setup-ipsec-vpn/master"
-  base_url2="https://gitlab.com/hwdsl2/setup-ipsec-vpn/-/raw/master"
+  base_url1="https://raw.githubusercontent.com/sbcarp/setup-ipsec-vpn/master"
+  base_url2="https://gitlab.com/sbcarp/setup-ipsec-vpn/-/raw/master"
   sh_file="vpnsetup_ubuntu.sh"
   if [ "$os_type" = "centos" ] || [ "$os_type" = "rhel" ] || [ "$os_type" = "rocky" ] \
     || [ "$os_type" = "alma" ] || [ "$os_type" = "ol" ]; then
